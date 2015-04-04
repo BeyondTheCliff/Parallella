@@ -1,4 +1,5 @@
 # Status place holder
+# Fork real version
 num=0
 bold=`tput bold`
 normal=`tput sgr0`
