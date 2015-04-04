@@ -27,8 +27,8 @@ if [ "$1" != "" ]; then
     elif [ "$1" == "update" ]; then
     	echo "Updating cluster"
     	SSH 'git clone https://github.com/OSM12345/Parallella.git'
-    elif [ "$1" == "status" ]; then
-    	echo "starting"
+    elif [ "$1" == "status" ]; then # Needs to be updated to Status.sh
+    	echo "Starting Status Check"
     	num=200
     	while [ $num -le 203 ]; do
     		ping -c2 192.168.0.$num
