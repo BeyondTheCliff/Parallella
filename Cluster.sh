@@ -1,4 +1,5 @@
 # Actual management system for the local computer cluster using Parallella.
+# Designed for master parallella board (203)
 bold=`tput bold`
 normal=`tput sgr0`
 
@@ -7,8 +8,7 @@ SSH ()
 	num=200
 	while [ $num -le 203 ]; do
 		ssh linaro@192.168.0.$num $1
-		echo $num
-		echo $1
+		echo $num "using" $1
 		num=$((num+1))
 	done
 }
@@ -16,7 +16,7 @@ SSH ()
 
 if [ "$1" != "" ]; then
     if [ "$1" == "help" ]; then
-    	echo "Options include:: \n shutdown \n tell \n update \n status"
+    	echo "Options include:: ${bold}shutdown, tell, update, status${normal}"
     elif [ "$1" == "shutdown" ]; then
     	echo "Shutting down cluster"
     	PSSWD="linaro"
@@ -26,7 +26,7 @@ if [ "$1" != "" ]; then
     	SSH $2
     elif [ "$1" == "update" ]; then
     	echo "Updating cluster"
-    	SSH 'apt-get update'
+    	SSH 'git clone https://github.com/OSM12345/Parallella.git'
     elif [ "$1" == "status" ]; then
     	echo "starting"
     	num=200
@@ -40,6 +40,11 @@ if [ "$1" != "" ]; then
 			fi
 			num=$((num+1))
     	done
+    elif [ "$1" == "transfer"]; then
+        echo "Copying Now"
+        scp $2 linaro@192.168.0.200:$3
+        scp $2 linaro@192.168.0.201:$3
+        scp $2 linaro@192.168.0.202:$3
     else
     	echo "Bad Command"
     fi
