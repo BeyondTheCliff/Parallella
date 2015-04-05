@@ -31,7 +31,7 @@ if [ "$1" != "" ]; then
     	echo "Starting Status Check"
     	num=200
     	while [ $num -le 203 ]; do
-    		ping -c2 192.168.0.$num
+    		ping -c2 192.168.0.$num # Needs silent ping. 
     		ret=$?
     		if [ $ret -eq 0 ]; then
 				echo $num "${bold}good${normal}"
