@@ -27,19 +27,52 @@ if [ "$1" != "" ]; then
     elif [ "$1" == "update" ]; then
     	echo "Updating cluster"
     	SSH 'git pull'
-    elif [ "$1" == "status" ]; then # Needs to be updated to Status.sh
-    	echo "Starting Status Check"
-    	num=200
-    	while [ $num -le 203 ]; do
-    		ping -c2 192.168.0.$num # Needs silent ping. 
-    		ret=$?
-    		if [ $ret -eq 0 ]; then
-				echo $num "${bold}good${normal}"
-			else
-				echo $num "${bold}bad${normal}"
-			fi
-			num=$((num+1))
-    	done
+    elif [ "$1" == "status" ]; then # Updating
+    	clear
+        ping -q -c3 192.168.0.200 > /dev/null
+        ret=$?
+        if [[ ret==1 ]]; then
+            echo "------------------------------"
+            echo "Parallella Board 200 Status is ${bold}Online${normal}"
+            echo "------------------------------"
+        else
+            echo "------------------------------"
+            echo "Parallella Board 200 Status is ${bold}Offline${normal}"
+            echo "------------------------------"
+        fi
+        ping -q -c3 192.168.0.201 > /dev/null
+        ret=$?
+        if [[ ret==1 ]]; then
+            echo "------------------------------"
+            echo "Parallella Board 201 Status is ${bold}Online${normal}"
+            echo "------------------------------"
+        else
+            echo "------------------------------"
+            echo "Parallella Board 201 Status is ${bold}Offline${normal}"
+            echo "------------------------------"
+        fi
+        ping -q -c3 192.168.0.202 > /dev/null
+        ret=$?
+        if [[ ret==1 ]]; then
+            echo "------------------------------"
+            echo "Parallella Board 202 Status is ${bold}Online${normal}"
+            echo "------------------------------"
+        else
+            echo "------------------------------"
+            echo "Parallella Board 202 Status is ${bold}Offline${normal}"
+            echo "------------------------------"
+        fi
+        ping -q -c3 192.168.0.203 > /dev/null
+        ret=$?
+        if [[ ret==1 ]]; then
+            echo "------------------------------"
+            echo "Parallella Board 203 Status is ${bold}Online${normal}"
+            echo "------------------------------"
+        else
+            echo "------------------------------"
+            echo "Parallella Board 203 Status is ${bold}Offline${normal}"
+            echo "------------------------------"
+        fi
     elif [ "$1" == "transfer"]; then
         echo "Copying Now"
         scp $2 linaro@192.168.0.200:$3
