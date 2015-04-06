@@ -7,8 +7,8 @@ SSH ()
 { 
 	num=200
 	while [ $num -le 203 ]; do
+        echo $num "using" $1
 		ssh linaro@192.168.0.$num $1
-		echo $num "using" $1
 		num=$((num+1))
 	done
 }
@@ -19,8 +19,7 @@ if [ "$1" != "" ]; then
     	echo "Options include:: ${bold}shutdown, tell, update, status${normal}"
     elif [ "$1" == "shutdown" ]; then
     	echo "Shutting down cluster"
-    	PSSWD="linaro"
-    	SSH 'echo $PSSWD | sudo shutdown -h now'
+    	SSH 'echo linaro | sudo shutdown -h now'
     elif [ "$1" == "tell" ]; then
     	echo "Telling cluster" $2
     	SSH $2
@@ -49,5 +48,5 @@ if [ "$1" != "" ]; then
     	echo "Bad Command"
     fi
 else
-    echo "Positional parameter 1 is empty. \nUse 'help' as an argument"
+    echo "Positional parameter 1 is empty. Use 'help' as an argument"
 fi
