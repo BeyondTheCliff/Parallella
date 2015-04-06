@@ -25,7 +25,7 @@ if [ "$1" != "" ]; then
     	SSH $2
     elif [ "$1" == "update" ]; then
     	echo "Updating cluster"
-    	SSH 'git clone https://github.com/OSM12345/Parallella.git'
+    	SSH 'git pull'
     elif [ "$1" == "status" ]; then # Needs to be updated to Status.sh
     	echo "Starting Status Check"
     	num=200
