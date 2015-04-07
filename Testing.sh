@@ -1,4 +1,5 @@
 # Another new status
+# Meant for general test scripts
 num=200
 clear
 while [[ $num -le 203 ]]; do
