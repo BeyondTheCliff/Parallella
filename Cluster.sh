@@ -1,6 +1,6 @@
 # Actual management system for the local computer cluster using Parallella.
 # Designed for master parallella board (203)
-# Fork: Status Testing 123
+# Fork: Status
 bold=`tput bold`
 normal=`tput sgr0`
 
