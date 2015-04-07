@@ -17,7 +17,7 @@ SSH ()
 
 if [ "$1" != "" ]; then
     if [ "$1" == "help" ]; then
-    	echo "Options include:: ${bold}shutdown, tell, update, status${normal}"
+    	echo "Options include:: ${bold}shutdown, tell, update, status, transfer${normal}"
     elif [ "$1" == "shutdown" ]; then
     	echo "Shutting down cluster"
     	SSH 'echo linaro | sudo shutdown -h now'
