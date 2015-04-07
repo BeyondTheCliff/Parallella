@@ -26,7 +26,7 @@ if [ "$1" != "" ]; then
     	SSH $2
     elif [ "$1" == "update" ]; then
     	echo "Updating cluster"
-    	SSH 'git pull'
+    	SSH 'cd Parallella; git pull'
     elif [ "$1" == "status" ]; then # Updating
     	clear
         ping -q -c3 192.168.0.200 > /dev/null
