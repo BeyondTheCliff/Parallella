@@ -2,7 +2,7 @@
 num=200
 clear
 while [[ $num -le 203 ]]; do
-    echo "Pining"
+    echo "Pinging"
     ping -q -c3 192.168.0.$num > /dev/null
     ret=$?
     if [[ ret==1 ]]; then
@@ -15,4 +15,4 @@ while [[ $num -le 203 ]]; do
         echo "---------------------------------------------"
     fi
     num=$((num+1))
-fi
+done
