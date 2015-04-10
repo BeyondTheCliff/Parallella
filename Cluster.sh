@@ -50,8 +50,6 @@ if [[ "$1" != "" ]]; then
         scp $2 linaro@192.168.0.200:$3
         scp $2 linaro@192.168.0.201:$3
         scp $2 linaro@192.168.0.202:$3
-    elif [[ "$1" == "mpi start" ]]; then # Next feature
-        #statements
     else
     	echo "Bad Command"
     fi
