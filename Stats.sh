@@ -3,6 +3,7 @@
 
 clear
 num=200
+echo "----------------------------"
 echo "    Starting"
 echo "----------------------------"
 while [[ $num -le 203 ]]; do
