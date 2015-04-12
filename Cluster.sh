@@ -28,21 +28,14 @@ if [[ "$1" != "" ]]; then
     	echo "Updating cluster"
     	SSH 'cd Parallella; git pull'
     elif [[ "$1" == "status" ]]; then
-    	num=200
-        clear
+    	clear
+        num=200
+        echo "----------------------------"
+        echo "    Starting"
+        echo "----------------------------"
         while [[ $num -le 203 ]]; do
-            echo "Pinging"
-            ping -q -c3 192.168.0.$num > /dev/null
-            ret=$?
-            if [[ ret==1 ]]; then
-                echo "---------------------------------------------"
-                echo "Parallella Board ${bold}$num${normal} Status is ${bold}Online${normal}"
-                echo "---------------------------------------------"
-            else
-                echo "---------------------------------------------"
-                echo "Parallella Board ${bold}$num${normal} Status is ${bold}Offline${normal}"
-                echo "---------------------------------------------"
-            fi
+            ssh linaro@192.168.0.$num ip addr show | grep "192.168."
+            echo "----------------------------"
             num=$((num+1))
         done
     elif [[ "$1" == "transfer" ]]; then
