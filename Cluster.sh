@@ -4,17 +4,15 @@
 bold=`tput bold`
 normal=`tput sgr0`
 
+ipname=(102,103,104,105)
+
 SSH ()
 { 
-	num=200
-	while [[ $num -le 203 ]]; do
-        echo $num "using" $1
-		ssh linaro@192.168.0.$num $1
-		num=$((num+1))
-	done
+    ssh linaro@192.168.0.${ipname[1]} $1
+    ssh linaro@192.168.0.${ipname[2]} $1
+    ssh linaro@192.168.0.${ipname[3]} $1
+    ssh linaro@192.168.0.${ipname[4]} $1
 }
-
-
 if [[ "$1" != "" ]]; then
     if [[ "$1" == "help" ]]; then
     	echo "Options include:: ${bold}shutdown, tell, update, status, transfer${normal}"
@@ -29,14 +27,16 @@ if [[ "$1" != "" ]]; then
     	SSH 'cd Parallella; git pull'
     elif [[ "$1" == "status" ]]; then
     	clear
-        num=200
+        num=0
         echo "----------------------------"
         echo "    Starting"
         echo "----------------------------"
-        while [[ $num -le 203 ]]; do
-            ssh linaro@192.168.0.$num ip addr show | grep "192.168."
+        while [[ $num -le 3 ]]; do
+            ssh linaro@192.168.0.$ipname ip addr show | grep "eth0"
             echo "----------------------------"
             num=$((num+1))
+        done
+            
         done
     elif [[ "$1" == "transfer" ]]; then
         echo "Copying Now"
