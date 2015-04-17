@@ -4,7 +4,7 @@
 b=`tput bold`
 n=`tput sgr0`
 
-declare -a ipname=(102,103,104,105)
+declare -a ipname=( 102 103 104 105 )
 
 SSH ()
 { 
