@@ -36,7 +36,7 @@ if [[ "$1" != "" ]]; then
         echo "----------------------------"
         echo "    Starting"
         echo "----------------------------"
-        SSH ip addr show | grep "eth0"
+        SSH 'ip addr show | grep "eth0"'
     elif [[ "$1" == "transfer" ]]; then
         echo "Copying Now"
         scp $2 linaro@192.168.0.200:$3
