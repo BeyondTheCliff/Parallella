@@ -9,13 +9,13 @@ ipname=(102,103,104,105)
 SSH ()
 { 
     echo "----------------------------"
-    ssh linaro@192.168.0.$ipname[1] $1
+    ssh linaro@192.168.0.${ipname[1]} $1
     echo "----------------------------"
-    ssh linaro@192.168.0.$ipname[2] $1
+    ssh linaro@192.168.0.${ipname[2]} $1
     echo "----------------------------"
-    ssh linaro@192.168.0.$ipname[3] $1
+    ssh linaro@192.168.0.${ipname[3]} $1
     echo "----------------------------"
-    ssh linaro@192.168.0.$ipname[4] $1
+    ssh linaro@192.168.0.${ipname[4]} $1
     echo "----------------------------"
 }
 if [[ "$1" != "" ]]; then
