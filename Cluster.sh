@@ -8,9 +8,12 @@ declare -a ipname=( 102 103 104 105 )
 
 SSH ()
 { 
+    num = 0
     echo "Running " $1
-    echo "----------------------------"
-    ssh linaro@192.168.0.${ipname[0]} $1
+    while [[ $num < ${ipname[#]} ]]; do
+        echo "----------------------------"
+        ssh linaro@192.168.0.${ipname[0]} $1
+    done
     echo "----------------------------"
     ssh linaro@192.168.0.${ipname[1]} $1
     echo "----------------------------"
