@@ -13,7 +13,7 @@ SSH ()
     echo "Running " $1
     while [[ $num < 4 ]]; do
         echo "----------------------------"
-        ssh linaro@${ipname[$num]} $1
+        timeout ssh linaro@${ipname[$num]} $1
         declare num=$((num+1))
     done
 }
