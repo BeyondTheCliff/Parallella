@@ -4,7 +4,8 @@
 b=`tput bold`
 n=`tput sgr0`
 
-declare -a ipname=( 102 103 104 105 )
+
+declare -a ipname=( 10.0.1.200 10.0.1.201 10.0.1.202 10.0.1.203 )
 
 SSH ()
 { 
@@ -12,15 +13,8 @@ SSH ()
     echo "Running " $1
     while [[ $num < ${ipname[#]} ]]; do
         echo "----------------------------"
-        ssh linaro@192.168.0.${ipname[0]} $1
+        ssh linaro@${ipname[0]} $1
     done
-    echo "----------------------------"
-    ssh linaro@192.168.0.${ipname[1]} $1
-    echo "----------------------------"
-    ssh linaro@192.168.0.${ipname[2]} $1
-    echo "----------------------------"
-    ssh linaro@192.168.0.${ipname[3]} $1
-    echo "----------------------------"
 }
 if [[ "$1" != "" ]]; then
     if [[ "$1" == "help" ]]; then
