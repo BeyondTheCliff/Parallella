@@ -14,7 +14,7 @@ SSH ()
     while [[ $num < 4 ]]; do
         echo "----------------------------"
         ssh linaro@${ipname[$num]} $1
-        declare num = $((num+1))
+        declare num=$((num+1))
     done
 }
 if [[ "$1" != "" ]]; then
