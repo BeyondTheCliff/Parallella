@@ -9,11 +9,12 @@ declare -a ipname=( 10.0.1.200 10.0.1.201 10.0.1.202 10.0.1.203 )
 
 SSH ()
 { 
-    num = 0
+    declare num = 0
     echo "Running " $1
     while [[ $num < ${ipname[#]} ]]; do
         echo "----------------------------"
-        ssh linaro@${ipname[0]} $1
+        ssh linaro@${ipname[$num]} $1
+        declare num = $((num+1))
     done
 }
 if [[ "$1" != "" ]]; then
