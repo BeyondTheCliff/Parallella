@@ -1,5 +1,6 @@
 # Actual management system for the local computer cluster using Parallella.
 # Designed for master parallella board (203)
+# Cluster name: Samaritian
 # Fork: master
 b=`tput bold`
 n=`tput sgr0`
@@ -11,11 +12,12 @@ SSH ()
 { 
     declare num=0
     echo "Running " $1
-    while [[ $num < 4 ]]; do
+    while [[ $num < ${#ipname[@]} ]]; do
         echo "----------------------------"
-        timeout 5 ssh linaro@${ipname[$num]} $1
+        ssh linaro@${ipname[$num]} $1
         declare num=$((num+1))
     done
+    echo "----------------------------"
 }
 if [[ "$1" != "" ]]; then
     if [[ "$1" == "help" ]]; then
@@ -26,9 +28,10 @@ if [[ "$1" != "" ]]; then
     elif [[ "$1" == "tell" ]]; then
     	echo "Telling cluster" $2
     	SSH $2
-    elif [[ "$1" == "update" ]]; then # Works, now expand
+    elif [[ "$1" == "update" ]]; then
     	echo "Updating cluster"
     	SSH 'cd Parallella; git pull'
+        SSH 'echo linaro | sudo apt-get update'
     elif [[ "$1" == "status" ]]; then
     	clear
         echo "----------------------------"
@@ -37,9 +40,9 @@ if [[ "$1" != "" ]]; then
         SSH 'ip addr show | grep "eth0" | grep "inet"'
     elif [[ "$1" == "transfer" ]]; then
         echo "Copying Now"
-        scp $2 linaro@192.168.0.200:$3
-        scp $2 linaro@192.168.0.201:$3
-        scp $2 linaro@192.168.0.202:$3
+        scp $2 linaro@${ipname[0]}:$3
+        scp $2 linaro@${ipname[1]}:$3
+        scp $2 linaro@${ipname[2]}:$3
     else
     	echo "Bad Command"
     fi
