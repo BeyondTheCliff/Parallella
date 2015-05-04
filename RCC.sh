@@ -1,10 +1,8 @@
-# Actual management system for the local computer cluster using Parallella.
-# Designed for master parallella board (203)
+# Remote Cluster Control (RCC)
 # Cluster name: Samaritian
 # Fork: master
 b=`tput bold`
 n=`tput sgr0`
-
 
 declare -a ipname=( 10.0.1.200 10.0.1.201 10.0.1.202 10.0.1.203 )
 
@@ -43,6 +41,7 @@ if [[ "$1" != "" ]]; then
         scp $2 linaro@${ipname[0]}:$3
         scp $2 linaro@${ipname[1]}:$3
         scp $2 linaro@${ipname[2]}:$3
+        scp $2 linaro@${ipname[3]}:$3
     else
     	echo "Bad Command"
     fi
